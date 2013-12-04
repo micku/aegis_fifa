@@ -36,9 +36,14 @@ application = Cling(get_wsgi_application())
 # application = HelloWorldApplication(application)
 """
 import os
+from django.core.wsgi import get_wsgi_application
+from dj_static import Cling
+
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "aegis_fifa.settings")
 
 # This application object is used by the development server
 # as well as any WSGI server configured to use this file.
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
+
+application = Cling(get_wsgi_application())

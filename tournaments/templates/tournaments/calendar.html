@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<div id="body">
+		{% if tournament %}
+			<div class="sixteen columns">
+			<h3>Calendario {{ tournament.name }}</h3>
+			</div>
+			{% for d in days %}
+				<div class="eight columns">
+					<h4>Giornata {{ d.day }}</h4>
+					<table>
+						<tbody>
+							<table class="calendar-table">
+							{% for g in games %}
+								{% if g.day.id = d.id %}
+									<tr>
+										<td class="team">{{ g.team1.team.name }} ({{ g.team1.player.name|slice:":3"|upper }})</td>
+										<td class="goal">{% if g.goal_team1 %}{{ g.goal_team1 }}{% else %}-{% endif %}</td>
+										<td class="goal">{% if g.goal_team2 %}{{ g.goal_team2 }}{% else %}-{% endif %}</td>
+										<td class="team">{{ g.team2.team.name }} ({{ g.team1.player.name|slice:":3"|upper }})</td>
+									</tr>
+								{% endif %}
+							{% endfor %}
+							</table>
+						</tbody>
+					</table>
+				</div>
+			{% endfor %}
+		{% else %}
+			<div id="body" class="sixteen columns">
+		    <p>No calendar for tournament.</p>
+		    </div>
+		{% endif %}
+	</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block body %}
+	<div id="body" class="sixteen columns">
+		{% if tournament %}
+			<h3>{{ tournament.name }}</h3>
+			<h4>Classifica</h4>
+			<table class="ranking">
+				<thead>
+					<tr>
+						<th class="name">Squadra</th>
+						<th class="pt">Punti</th>
+						<th class="g">Giocate</th>
+						<th class="v">Vinte</th>
+						<th class="n">Pareggiate</th>
+						<th class="p">Perse</th>
+						<th class="gf">Gol Fatti</th>
+						<th class="gs">Gol Subiti</th>
+						<th class="dr">Differenza Reti</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for t in ranking %}
+						<tr>
+							<td class="name"><strong>{{ t.team.name }}</strong> <small>{{ t.player.name }}</small></td>
+							<td class="pt">{{ t.pt }}</td>
+							<td class="g">{{ t.g }}</td>
+							<td class="v">{{ t.v }}</td>
+							<td class="n">{{ t.n }}</td>
+							<td class="p">{{ t.p }}</td>
+							<td class="gf">{{ t.gf }}</td>
+							<td class="gs">{{ t.gs }}</td>
+							<td class="dr">{{ t.dr }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<hr/>
+			<h4>Marcatori</h4>
+			{% for s in scorers %}
+					{{ s.scorer__name }} <strong>{{ s.total }}</strong><br />
+			{% endfor %}
+			<hr/>
+			<h4>Ultime partite</h4>
+			{% for lm in last_matches %}
+					{{ lm.team1.team.name }} vs. {{ lm.team2.team.name }} <strong>{{ lm.goal_team1 }} - {{ lm.goal_team2 }}</strong><br />
+			{% endfor %}
+		{% else %}
+		    <p>No tournament.</p>
+		{% endif %}
+	</div>
+{% endblock %}

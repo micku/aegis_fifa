@@ -18,7 +18,7 @@
 										<td class="team">{{ g.team1.team.name }} ({{ g.team1.player.name|slice:":3"|upper }})</td>
 										<td class="goal">{% if g.goal_team1 %}{{ g.goal_team1 }}{% else %}-{% endif %}</td>
 										<td class="goal">{% if g.goal_team2 %}{{ g.goal_team2 }}{% else %}-{% endif %}</td>
-										<td class="team">{{ g.team2.team.name }} ({{ g.team1.player.name|slice:":3"|upper }})</td>
+										<td class="team">{{ g.team2.team.name }} ({{ g.team2.player.name|slice:":3"|upper }})</td>
 									</tr>
 								{% endif %}
 							{% endfor %}

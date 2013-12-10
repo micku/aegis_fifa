@@ -54,7 +54,7 @@ def detail(request, tournament_id):
         
         teams[i].dr = teams[i].gf - teams[i].gs
             
-    ranking = sorted(teams, key=lambda team: -team.pt -team.dr -team.gf)
+    ranking = sorted(teams, key=lambda team: (-team.pt, -team.dr, -team.gf))
     """
      ToDo: Fix sorting order
      - punti conquistati in classifica generale;

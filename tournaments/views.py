@@ -66,7 +66,10 @@ def detail(request, tournament_id):
     """
     last_matches = sorted(games, key=lambda game: game.creation_date)[:10]
     
-    scorers = MatchGoals.objects.filter(owngoal=0).values('scorer__name').annotate(total=Count('scorer__name')).order_by()
+    scorers = MatchGoals.objects.filter(owngoal=0)\
+		.values('scorer__name')\
+		.annotate(total=Count('scorer__name'))\
+		.order_by('-total')
     
     context = {'tournament': tournament, 'teams': teams, 'last_matches': last_matches, 'ranking': ranking, 'scorers': scorers}
     return render(request, 'tournaments/detail.html', context)

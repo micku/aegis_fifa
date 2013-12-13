@@ -6,4 +6,5 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^(?P<tournament_id>\d+)/$', views.detail, name='detail'),
     url(r'^(?P<tournament_id>\d+)/calendar/$', views.calendar, name='calendar'),
+    url(r'^(?P<tournament_id>\d+)/match/(?P<match_id>\d+)/$', views.matchdetail, name='matchdetail'),
 )

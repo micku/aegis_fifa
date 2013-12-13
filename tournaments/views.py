@@ -64,12 +64,12 @@ def detail(request, tournament_id):
      - maggior numero di gol segnati in classifica generale;
      - sorteggio.
     """
-    last_matches = sorted(games, key=lambda game: game.creation_date)[:10]
+    last_matches = sorted(games, key=lambda game: game.played_on, reverse=True)[:10]
     
     scorers = MatchGoals.objects.filter(owngoal=0)\
 		.values('scorer__name')\
 		.annotate(total=Count('scorer__name'))\
-		.order_by('-total')
+		.order_by('-total')[:10]
     
     context = {'tournament': tournament, 'teams': teams, 'last_matches': last_matches, 'ranking': ranking, 'scorers': scorers}
     return render(request, 'tournaments/detail.html', context)
@@ -81,3 +81,7 @@ def calendar(request, tournament_id):
     
     context = {'tournament': tournament, 'days': days, 'games': games}
     return render(request, 'tournaments/calendar.html', context)
+
+def matchdetail(request, tournament_id, match_id):
+    context = {}
+    return render(request, 'tournaments/matchdetail.html', context)

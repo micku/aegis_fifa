@@ -60,7 +60,7 @@ www.typeandgrids.com
 	<!-- Header begins ========================================================================== -->
 	<header class="sixteen columns">
 		<div id="logo">
-			<h1>FifAegis</h1>
+			<h1><a href="{% url 'index' %}">FifAegis</a></h1>
 			<h2></h2>
 			<!--
 			<img src="images/logo.png" width="275" height="35" alt="Logo" />
@@ -68,7 +68,7 @@ www.typeandgrids.com
 		</div>
 		<nav>
 			<ul>
-				<li><a href="{% url 'index' %}">Tornei</a></li>
+				<li><a href="{% url 'detail' tournament.id %}">Classifica</a></li>
 				{% if tournament %}
 				<li><a href="{% url 'calendar' tournament.id %}">Calendario</a></li>
 				{% endif %}
